@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "has_index_html": true,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
