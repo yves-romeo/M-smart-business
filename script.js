@@ -21,25 +21,28 @@ window.onload = () => {
 
 
 // LOGIN
-async function login() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+document.addEventListener("DOMContentLoaded", function () {
 
-    const res = await fetch('/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+  const form = document.getElementById("loginForm");
+
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault(); // STOP page reload
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      // Simple login logic
+      if (username === "admin" && password === "1234") {
+        window.location.href = "/dashboard.html";
+      } else {
+        alert("Invalid username or password");
+      }
     });
+  }
 
-    const data = await res.json();
+});
 
-    if (data.success) {
-        localStorage.setItem('role', data.role);
-        window.location.href = 'dashboard.html';
-    } else {
-        alert("Login failed");
-    }
-}
 
 // ADD ITEM (Employee only)
 async function addItem() {
