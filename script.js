@@ -1,139 +1,74 @@
-if (window.location.pathname.includes('dashboard.html')) {
-    const role = localStorage.getItem('role');
-
-    if (!role) {
-        window.location.href = 'login.html';
-    }
-}
-// CHECK ROLE WHEN PAGE LOADS
-window.onload = () => {
-    const role = localStorage.getItem('role');
-
-    if (role === 'admin') {
-        document.getElementById('adminSection').style.display = 'block';
-        document.getElementById('employeeSection').style.display = 'none';
-        viewAllItems();
-    } else {
-        loadItems();
-    }
-    loadCashflow();
-};
-
-
-// LOGIN
 document.addEventListener("DOMContentLoaded", function () {
 
-  const form = document.getElementById("loginForm");
+  // LOGIN SYSTEM
+  const loginForm = document.getElementById("loginForm");
 
-  if (form) {
-    form.addEventListener("submit", function (event) {
-      event.preventDefault(); // STOP page reload
+  if (loginForm) {
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
 
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
+      const role = document.getElementById("role").value;
 
-      // Simple login logic
-      if (username === "admin" && password === "1234") {
+      // Simple demo accounts
+      if (role === "admin" && username === "admin" && password === "1234") {
+        localStorage.setItem("role", "admin");
         window.location.href = "/dashboard.html";
-      } else {
-        alert("Invalid username or password");
+      } 
+      else if (role === "employee" && username === "user" && password === "1234") {
+        localStorage.setItem("role", "employee");
+        window.location.href = "/dashboard.html";
+      } 
+      else {
+        alert("Invalid credentials");
       }
     });
   }
 
 });
 
+// DASHBOARD SYSTEM
 
-// ADD ITEM (Employee only)
-async function addItem() {
-    const name = document.getElementById('itemName').value;
-    const quantity = document.getElementById('itemQty').value;
+let items = [];
+let totalIncome = 0;
 
-    await fetch('/add-item', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, quantity })
-    });
+function addItem() {
+  const name = document.getElementById("itemName").value;
+  const price = Number(document.getElementById("itemPrice").value);
 
-    loadItems();
+  if (!name || !price) {
+    alert("Enter valid data");
+    return;
+  }
+
+  items.push({ name, price });
+  totalIncome += price;
+
+  displayItems();
 }
 
-// LOAD ITEMS (Employee)
-async function loadItems() {
-    const res = await fetch('/items');
-    const items = await res.json();
+function displayItems() {
+  const list = document.getElementById("itemList");
+  list.innerHTML = "";
 
-    const list = document.getElementById('itemsList');
-    list.innerHTML = '';
+  items.forEach((item, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `${item.name} - ${item.price} 
+      <button onclick="removeItem(${index})">Remove</button>`;
+    list.appendChild(li);
+  });
 
-    items.forEach(item => {
-        const li = document.createElement('li');
-        li.innerText = `${item.name} - ${item.quantity}`;
-
-        // ADD DELETE BUTTON (SELL ITEM)
-        const btn = document.createElement('button');
-        btn.innerText = "Sold";
-        btn.onclick = () => deleteItem(item.name);
-
-        li.appendChild(btn);
-        list.appendChild(li);
-    });
+  document.getElementById("income").innerText = totalIncome;
 }
 
-// DELETE ITEM (simulate selling)
-async function deleteItem(name) {
-    await fetch('/delete-item', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name })
-    });
-
-    loadItems();
+function removeItem(index) {
+  totalIncome -= items[index].price;
+  items.splice(index, 1);
+  displayItems();
 }
 
-// ADMIN VIEW
-async function viewAllItems() {
-    const res = await fetch('/items');
-    const items = await res.json();
-
-    const list = document.getElementById('adminItemsList');
-    list.innerHTML = '';
-
-    items.forEach(item => {
-        const li = document.createElement('li');
-        li.innerText = `${item.name} - ${item.quantity}`;
-        list.appendChild(li);
-    });
-}async function addIncome() {
-    const amount = Number(document.getElementById('incomeAmount').value);
-
-    await fetch('/add-income', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount })
-    });
-
-    loadCashflow();
-}
-
-async function addExpense() {
-    const amount = Number(document.getElementById('expenseAmount').value);
-
-    await fetch('/add-expense', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount })
-    });
-
-    loadCashflow();
-}
-
-async function loadCashflow() {
-    const res = await fetch('/cashflow');
-    const data = await res.json();
-
-    const profit = data.income - data.expenses;
-
-    document.getElementById('cashflowDisplay').innerText =
-        `Income: ${data.income} | Expenses: ${data.expenses} | Profit: ${profit}`;
+function logout() {
+  localStorage.clear();
+  window.location.href = "/login.html";
 }

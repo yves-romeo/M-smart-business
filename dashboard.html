@@ -1,48 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="navbar">M-Smart Dashboard</div>
+<div class="navbar">
+  Dashboard | <button onclick="logout()">Logout</button>
+</div>
 
 <div class="container">
 
-    <!-- EMPLOYEE -->
-    <div id="employeeSection" class="card">
-        <h3>Employee Panel</h3>
+  <h2>Inventory</h2>
 
-        <input id="itemName" placeholder="Item name">
-        <input id="itemQty" placeholder="Quantity">
+  <input type="text" id="itemName" placeholder="Item name">
+  <input type="number" id="itemPrice" placeholder="Price">
+  <button onclick="addItem()">Add Item</button>
 
-        <button onclick="addItem()">Add Item</button>
+  <ul id="itemList"></ul>
 
-        <ul id="itemsList"></ul>
-    </div>
-
-    <!-- ADMIN -->
-    <div id="adminSection" class="card" style="display:none;">
-        <h3>Admin Panel</h3>
-
-        <h4>Items</h4>
-        <ul id="adminItemsList"></ul>
-
-        <h4>Cashflow</h4>
-
-        <input id="incomeAmount" placeholder="Income">
-        <button onclick="addIncome()">Add Income</button>
-
-        <input id="expenseAmount" placeholder="Expense">
-        <button onclick="addExpense()">Add Expense</button>
-
-        <h4 id="cashflowDisplay"></h4>
-    </div>
+  <h2>Cashflow</h2>
+  <p>Total Income: <span id="income">0</span></p>
 
 </div>
 
-<script src="script.js"></script>
+<script src="/script.js"></script>
 
 </body>
 </html>
