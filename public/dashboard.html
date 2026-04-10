@@ -1,31 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <title>Dashboard - M Smart Business</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <h2>M Smart Business</h2>
+      <ul>
+        <li><a href="#">Overview</a></li>
+        <li><a href="#">Reports</a></li>
+        <li><a href="#">Employees</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </aside>
 
-<div class="navbar">
-  Dashboard | <button onclick="logout()">Logout</button>
-</div>
-
-<div class="container">
-
-  <h2>Inventory</h2>
-
-  <input type="text" id="itemName" placeholder="Item name">
-  <input type="number" id="itemPrice" placeholder="Price">
-  <button onclick="addItem()">Add Item</button>
-
-  <ul id="itemList"></ul>
-
-  <h2>Cashflow</h2>
-  <p>Total Income: <span id="income">0</span></p>
-
-</div>
-
-<script src="/script.js"></script>
-
+    <main class="main-content">
+      <header>
+        <h1>Welcome back, Admin</h1>
+      </header>
+      <section class="cards">
+        <div class="card">
+          <h3>Sales</h3>
+          <p>$12,340</p>
+        </div>
+        <div class="card">
+          <h3>Employees</h3>
+          <p>24 Active</p>
+        </div>
+        <div class="card">
+          <h3>Tasks</h3>
+          <p>7 Pending</p>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
