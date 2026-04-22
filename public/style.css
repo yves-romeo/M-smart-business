@@ -94,3 +94,9 @@
   cursor: pointer;
   font-weight: bold;
 }
+#error-message {
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
