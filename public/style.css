@@ -27,9 +27,10 @@
 }
 
 .login-box form {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.5);
   padding: 40px;
   border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.5);
   backdrop-filter: blur(10px);
   width: 300px;
   display: flex;
