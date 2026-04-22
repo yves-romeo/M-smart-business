@@ -1,199 +1,95 @@
-/* Reset default browser styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-/* Body layout */
-body {
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-.login-container {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  width: 320px;
-  text-align: center;
-}
-
-.login-container h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #00c6ff;
-}
-
-.login-container input,
-.login-container select {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 6px;
-  outline: none;
-}
-
-.login-container button {
-  width: 100%;
-  padding: 10px;
-  background-color: #00c6ff;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.login-container button:hover {
-  background-color: #0072ff;
-}
-/* Dashboard layout */
-.dashboard-container {
-  display: flex;
-  height: 100vh;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 220px;
-  background: #203a43;
-  color: #fff;
-  padding: 20px;
-}
-
-.sidebar h2 {
-  margin-bottom: 20px;
-  color: #00c6ff;
-}
-
-.sidebar ul {
-  list-style: none;
-}
-
-.sidebar ul li {
-  margin: 15px 0;
-}
-
-.sidebar ul li a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.sidebar ul li a:hover {
-  color: #00c6ff;
-}
-
-/* Main content */
-.main-content {
-  flex: 1;
-  background: #f4f6f9;
-  padding: 30px;
-  color: #333;
-}
-
-.main-content header h1 {
-  margin-bottom: 20px;
-}
-
-/* Cards */
-.cards {
-  display: flex;
-  gap: 20px;
-}
-
-.card {
-  flex: 1;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.card h3 {
-  margin-bottom: 10px;
-  color: #0072ff;
-}
-
-/* Side-by-side login layout */
 .login-page {
   display: flex;
   height: 100vh;
+  background: url('forest.jpg') no-repeat center center/cover;
 }
 
-/* Login box (left side) */
+.welcome-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+}
+
+.welcome-section h1 {
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .login-box {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
-  color: #333;
 }
 
 .login-box form {
+  background: rgba(255,255,255,0.1);
+  padding: 40px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
   width: 300px;
   display: flex;
   flex-direction: column;
+  color: #fff;
 }
 
 .login-box h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #0072ff;
 }
 
-.login-box input {
+.login-box input,
+.login-box select {
   margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 12px;
+  border: none;
   border-radius: 6px;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.login-box input::placeholder {
+  color: #ddd;
 }
 
 .login-box button {
-  padding: 10px;
+  margin-top: 15px;
+  padding: 12px;
   background-color: #0072ff;
   border: none;
   border-radius: 6px;
   color: #fff;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 .login-box button:hover {
   background-color: #00c6ff;
 }
 
-/* Welcome section (right side) */
-.welcome-section {
-  flex: 1;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: #fff;
+.forgot {
+  text-align: right;
+  font-size: 12px;
+  margin-top: 10px;
+  color: #ddd;
+  text-decoration: none;
+}
+
+.social-login {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
+  justify-content: space-around;
+  margin-top: 15px;
 }
 
-.welcome-section h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
-  color: #00c6ff;
-}
-
-.welcome-section p {
-  font-size: 16px;
-  max-width: 300px;
-  text-align: center;
+.social-login button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
