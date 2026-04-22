@@ -34,7 +34,7 @@
   width: 300px;
   display: flex;
   flex-direction: column;
-  color: #fff;
+  color: #ffffff00;
 }
 
 .login-box h2 {
@@ -48,12 +48,12 @@
   padding: 12px;
   border: none;
   border-radius: 6px;
-  background: rgba(255,255,255,0.2);
-  color: #fff;
+  background: rgba(255, 255, 255, 0);
+  color: #ffffff4e;
 }
 
 .login-box input::placeholder {
-  color: #ddd;
+  color: #dddddd00;
 }
 
 .login-box button {
