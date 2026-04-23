@@ -76,3 +76,50 @@ if (orderForm) {
     orderForm.reset();
   });
 }
+// Inventory Management
+let inventory = {};
+
+const stockForm = document.getElementById("stockForm");
+if (stockForm) {
+  stockForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const item = document.getElementById("item").value;
+    const qty = parseInt(document.getElementById("stockQty").value);
+
+    if (!inventory[item]) {
+      inventory[item] = 0;
+    }
+    inventory[item] += qty;
+
+    updateInventoryList();
+    stockForm.reset();
+  });
+}
+
+function updateInventoryList() {
+  const stockItems = document.getElementById("stockItems");
+  stockItems.innerHTML = "";
+  for (const [item, qty] of Object.entries(inventory)) {
+    const li = document.createElement("li");
+    li.textContent = `${item}: ${qty}`;
+    if (qty <= 5) {
+      li.style.color = "red"; // Low stock alert
+    }
+    stockItems.appendChild(li);
+  }
+}
+
+// Connect Sales System with Inventory
+const orderForm2 = document.getElementById("orderForm");
+if (orderForm2) {
+  orderForm2.addEventListener("submit", function(e) {
+    const product = document.getElementById("product").value;
+    const quantity = parseInt(document.getElementById("quantity").value);
+
+    if (inventory[product]) {
+      inventory[product] -= quantity;
+      if (inventory[product] < 0) inventory[product] = 0;
+      updateInventoryList();
+    }
+  });
+}

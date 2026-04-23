@@ -28,7 +28,6 @@
     <div class="sales-section">
       <h2>Sales & Orders</h2>
 
-      <!-- Order Form -->
       <form id="orderForm">
         <label for="product">Product:</label>
         <input type="text" id="product" required>
@@ -47,7 +46,6 @@
         <button type="submit">Add Order</button>
       </form>
 
-      <!-- Daily Summary -->
       <div id="salesSummary">
         <h3>Daily Sales Summary</h3>
         <p>Total Orders: <span id="totalOrders">0</span></p>
@@ -56,11 +54,30 @@
         <p>Mobile Money: RWF <span id="mobileSales">0</span></p>
       </div>
 
-      <!-- Receipt -->
       <div id="receipt" style="display:none;">
         <h3>Receipt</h3>
         <p id="receiptDetails"></p>
         <button onclick="window.print()">Print Receipt</button>
+      </div>
+    </div>
+
+    <!-- Inventory Management -->
+    <div class="inventory-section">
+      <h2>Inventory Management</h2>
+
+      <form id="stockForm">
+        <label for="item">Item:</label>
+        <input type="text" id="item" required>
+
+        <label for="stockQty">Quantity:</label>
+        <input type="number" id="stockQty" min="1" required>
+
+        <button type="submit">Add to Inventory</button>
+      </form>
+
+      <div id="inventoryList">
+        <h3>Current Stock</h3>
+        <ul id="stockItems"></ul>
       </div>
     </div>
   </div>
