@@ -108,8 +108,9 @@ html, body {
 /* Dashboard Layout */
 .dashboard-page {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   background: url('forest.jpg') no-repeat center center/cover;
+  background-attachment: fixed; /* keeps forest visible while scrolling */
   color: #fff;
   font-family: 'Segoe UI', sans-serif;
 }
