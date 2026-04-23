@@ -2,40 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard - M Smart Business</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M Smart Business Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="dashboard-container">
-    <aside class="sidebar">
-      <h2>M Smart Business</h2>
-      <ul>
-        <li><a href="#">Overview</a></li>
-        <li><a href="#">Reports</a></li>
-        <li><a href="#">Employees</a></li>
-        <li><a href="#">Settings</a></li>
-      </ul>
-    </aside>
-
-    <main class="main-content">
-      <header>
-        <h1>Welcome back, Admin</h1>
-      </header>
-      <section class="cards">
-        <div class="card">
-          <h3>Sales</h3>
-          <p>$12,340</p>
-        </div>
-        <div class="card">
-          <h3>Employees</h3>
-          <p>24 Active</p>
-        </div>
-        <div class="card">
-          <h3>Tasks</h3>
-          <p>7 Pending</p>
-        </div>
-      </section>
-    </main>
+<body class="dashboard-page">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>M Smart Business</h2>
+    <ul>
+      <li><a href="#">Overview</a></li>
+      <li><a href="#">Sales & Orders</a></li>
+      <li><a href="#">Inventory</a></li>
+      <li><a href="#">Customers</a></li>
+      <li><a href="#">Reports</a></li>
+      <li><a href="#">Settings</a></li>
+    </ul>
   </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1>Welcome back, Admin</h1>
+
+    <!-- Sales & Orders System -->
+    <div class="sales-section">
+      <h2>Sales & Orders</h2>
+
+      <!-- Order Form -->
+      <form id="orderForm">
+        <label for="product">Product:</label>
+        <input type="text" id="product" required>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" min="1" required>
+
+        <label for="payment">Payment Method:</label>
+        <select id="payment" required>
+          <option value="">Select</option>
+          <option value="cash">Cash</option>
+          <option value="mtn">MTN Mobile Money</option>
+          <option value="airtel">Airtel Money</option>
+        </select>
+
+        <button type="submit">Add Order</button>
+      </form>
+
+      <!-- Daily Summary -->
+      <div id="salesSummary">
+        <h3>Daily Sales Summary</h3>
+        <p>Total Orders: <span id="totalOrders">0</span></p>
+        <p>Total Sales: RWF <span id="totalSales">0</span></p>
+        <p>Cash: RWF <span id="cashSales">0</span></p>
+        <p>Mobile Money: RWF <span id="mobileSales">0</span></p>
+      </div>
+
+      <!-- Receipt -->
+      <div id="receipt" style="display:none;">
+        <h3>Receipt</h3>
+        <p id="receiptDetails"></p>
+        <button onclick="window.print()">Print Receipt</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

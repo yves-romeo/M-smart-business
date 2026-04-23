@@ -34,3 +34,45 @@ if (loginForm) {
     }
   });
 }
+// Sales & Orders System
+let totalOrders = 0;
+let totalSales = 0;
+let cashSales = 0;
+let mobileSales = 0;
+
+const orderForm = document.getElementById("orderForm");
+if (orderForm) {
+  orderForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const product = document.getElementById("product").value;
+    const quantity = parseInt(document.getElementById("quantity").value);
+    const payment = document.getElementById("payment").value;
+
+    const pricePerItem = 1000; // Example price (RWF)
+    const orderTotal = quantity * pricePerItem;
+
+    totalOrders++;
+    totalSales += orderTotal;
+
+    if (payment === "cash") {
+      cashSales += orderTotal;
+    } else {
+      mobileSales += orderTotal;
+    }
+
+    // Update summary
+    document.getElementById("totalOrders").textContent = totalOrders;
+    document.getElementById("totalSales").textContent = totalSales;
+    document.getElementById("cashSales").textContent = cashSales;
+    document.getElementById("mobileSales").textContent = mobileSales;
+
+    // Show receipt
+    const receiptDetails = `Product: ${product}, Quantity: ${quantity}, Total: RWF ${orderTotal}, Payment: ${payment}`;
+    document.getElementById("receiptDetails").textContent = receiptDetails;
+    document.getElementById("receipt").style.display = "block";
+
+    // Reset form
+    orderForm.reset();
+  });
+}
