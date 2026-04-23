@@ -155,3 +155,41 @@ function updateCustomerList() {
     list.appendChild(li);
   });
 }
+// Tasks Management
+let tasks = [];
+
+const taskForm = document.getElementById("taskForm");
+if (taskForm) {
+  taskForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("taskName").value;
+    const due = document.getElementById("taskDue").value;
+
+    tasks.push({ name, due, completed: false });
+    updateTaskList();
+    taskForm.reset();
+  });
+}
+
+function updateTaskList() {
+  const list = document.getElementById("tasks");
+  list.innerHTML = "";
+  tasks.forEach((t, index) => {
+    const li = document.createElement("li");
+    li.className = t.completed ? "completed" : "";
+    li.innerHTML = `${t.name} (Due: ${t.due}) 
+      <button onclick="toggleTask(${index})">${t.completed ? "Undo" : "Complete"}</button>
+      <button onclick="deleteTask(${index})">Delete</button>`;
+    list.appendChild(li);
+  });
+}
+
+function toggleTask(index) {
+  tasks[index].completed = !tasks[index].completed;
+  updateTaskList();
+}
+
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  updateTaskList();
+}
