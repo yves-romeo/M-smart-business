@@ -350,4 +350,8 @@ html, body {
   text-decoration: line-through;
   color: #ccc;
 }
+.section {
+  margin-top: 20px;
+}
+
 

@@ -11,12 +11,13 @@
   <div class="sidebar">
     <h2>M Smart Business</h2>
     <ul>
-      <li><a href="#">Overview</a></li>
-      <li><a href="#">Sales & Orders</a></li>
-      <li><a href="#">Inventory</a></li>
-      <li><a href="#">Customers</a></li>
-      <li><a href="#">Reports</a></li>
-      <li><a href="#">Settings</a></li>
+      <li><a href="#" onclick="showSection('overview')">Overview</a></li>
+      <li><a href="#" onclick="showSection('sales')">Sales & Orders</a></li>
+      <li><a href="#" onclick="showSection('inventory')">Inventory</a></li>
+      <li><a href="#" onclick="showSection('customers')">Customers</a></li>
+      <li><a href="#" onclick="showSection('tasks')">Tasks</a></li>
+      <li><a href="#" onclick="showSection('reports')">Reports</a></li>
+      <li><a href="#" onclick="showSection('settings')">Settings</a></li>
     </ul>
   </div>
 
@@ -24,10 +25,15 @@
   <div class="main-content">
     <h1>Welcome back, Admin</h1>
 
-    <!-- Sales & Orders System -->
-    <div class="sales-section">
-      <h2>Sales & Orders</h2>
+    <!-- Overview -->
+    <div id="overview" class="section">
+      <h2>Dashboard Overview</h2>
+      <p>Select a section from the sidebar to manage your business.</p>
+    </div>
 
+    <!-- Sales & Orders -->
+    <div id="sales" class="section" style="display:none;">
+      <h2>Sales & Orders</h2>
       <form id="orderForm">
         <label for="product">Product:</label>
         <input type="text" id="product" required>
@@ -61,10 +67,9 @@
       </div>
     </div>
 
-    <!-- Inventory Management -->
-    <div class="inventory-section">
+    <!-- Inventory -->
+    <div id="inventory" class="section" style="display:none;">
       <h2>Inventory Management</h2>
-
       <form id="stockForm">
         <label for="item">Item:</label>
         <input type="text" id="item" required>
@@ -80,49 +85,56 @@
         <ul id="stockItems"></ul>
       </div>
     </div>
-    <!-- Customer Management -->
-<div class="customer-section">
-  <h2>Customer Management</h2>
 
-  <!-- Add Customer -->
-  <form id="customerForm">
-    <label for="custName">Name:</label>
-    <input type="text" id="custName" required>
+    <!-- Customers -->
+    <div id="customers" class="section" style="display:none;">
+      <h2>Customer Management</h2>
+      <form id="customerForm">
+        <label for="custName">Name:</label>
+        <input type="text" id="custName" required>
 
-    <label for="custPhone">Phone:</label>
-    <input type="text" id="custPhone" required>
+        <label for="custPhone">Phone:</label>
+        <input type="text" id="custPhone" required>
 
-    <button type="submit">Save Customer</button>
-  </form>
+        <button type="submit">Save Customer</button>
+      </form>
 
-  <!-- Customer List -->
-  <div id="customerList">
-    <h3>Saved Customers</h3>
-    <ul id="customers"></ul>
-  </div>
-</div><!-- Tasks Management -->
-<div class="tasks-section">
-  <h2>Tasks & Reminders</h2>
+      <div id="customerList">
+        <h3>Saved Customers</h3>
+        <ul id="customersList"></ul>
+      </div>
+    </div>
 
-  <!-- Add Task -->
-  <form id="taskForm">
-    <label for="taskName">Task:</label>
-    <input type="text" id="taskName" required>
+    <!-- Tasks -->
+    <div id="tasks" class="section" style="display:none;">
+      <h2>Tasks & Reminders</h2>
+      <form id="taskForm">
+        <label for="taskName">Task:</label>
+        <input type="text" id="taskName" required>
 
-    <label for="taskDue">Due Date:</label>
-    <input type="date" id="taskDue" required>
+        <label for="taskDue">Due Date:</label>
+        <input type="date" id="taskDue" required>
 
-    <button type="submit">Add Task</button>
-  </form>
+        <button type="submit">Add Task</button>
+      </form>
 
-  <!-- Task List -->
-  <div id="taskList">
-    <h3>My Tasks</h3>
-    <ul id="tasks"></ul>
-  </div>
-</div>
+      <div id="taskList">
+        <h3>My Tasks</h3>
+        <ul id="tasksList"></ul>
+      </div>
+    </div>
 
+    <!-- Reports -->
+    <div id="reports" class="section" style="display:none;">
+      <h2>Reports</h2>
+      <p>Coming soon...</p>
+    </div>
 
+    <!-- Settings -->
+    <div id="settings" class="section" style="display:none;">
+      <h2>Settings</h2>
+      <p>Customize your dashboard here.</p>
+    </div>
   </div>
 
   <script src="script.js"></script>
