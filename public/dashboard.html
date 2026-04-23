@@ -80,6 +80,28 @@
         <ul id="stockItems"></ul>
       </div>
     </div>
+    <!-- Customer Management -->
+<div class="customer-section">
+  <h2>Customer Management</h2>
+
+  <!-- Add Customer -->
+  <form id="customerForm">
+    <label for="custName">Name:</label>
+    <input type="text" id="custName" required>
+
+    <label for="custPhone">Phone:</label>
+    <input type="text" id="custPhone" required>
+
+    <button type="submit">Save Customer</button>
+  </form>
+
+  <!-- Customer List -->
+  <div id="customerList">
+    <h3>Saved Customers</h3>
+    <ul id="customers"></ul>
+  </div>
+</div>
+
   </div>
 
   <script src="script.js"></script>

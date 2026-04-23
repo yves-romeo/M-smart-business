@@ -248,3 +248,51 @@ html, body {
 #stockItems li {
   margin: 5px 0;
 }
+/* Customer Section */
+.customer-section {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.customer-section h2 {
+  color: #00bfff;
+  margin-bottom: 15px;
+}
+
+#customerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#customerForm input, #customerForm button {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+
+#customerForm button {
+  background: #00bfff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#customerForm button:hover {
+  background: #0099cc;
+}
+
+#customerList {
+  margin-top: 20px;
+  background: rgba(0,0,0,0.5);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+#customers li {
+  margin: 5px 0;
+}
+

@@ -123,3 +123,35 @@ if (orderForm2) {
     }
   });
 }
+// Customer Management
+let customers = [];
+
+const customerForm = document.getElementById("customerForm");
+if (customerForm) {
+  customerForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("custName").value;
+    const phone = document.getElementById("custPhone").value;
+
+    // Check if customer already exists
+    let existing = customers.find(c => c.phone === phone);
+    if (existing) {
+      existing.loyaltyPoints += 1; // Add loyalty point
+    } else {
+      customers.push({ name, phone, loyaltyPoints: 1 });
+    }
+
+    updateCustomerList();
+    customerForm.reset();
+  });
+}
+
+function updateCustomerList() {
+  const list = document.getElementById("customers");
+  list.innerHTML = "";
+  customers.forEach(c => {
+    const li = document.createElement("li");
+    li.textContent = `${c.name} (${c.phone}) - Loyalty Points: ${c.loyaltyPoints}`;
+    list.appendChild(li);
+  });
+}
