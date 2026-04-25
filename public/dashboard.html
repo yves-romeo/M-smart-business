@@ -7,6 +7,58 @@
   <link rel="stylesheet" href="style.css">
   <!-- Chart.js for Overview column chart -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Dashboard Styles (scoped to dashboard-page) */
+    .dashboard-page {
+      display: flex;
+      min-height: 100vh;
+      background: url('forest.jpg') no-repeat center center/cover;
+      background-attachment: fixed;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .sidebar {
+      width: 220px;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+    }
+    .sidebar h2 { color: #00bfff; margin-bottom: 20px; }
+    .sidebar ul { list-style: none; padding: 0; }
+    .sidebar ul li { margin: 10px 0; }
+    .sidebar ul li a { color: #fff; text-decoration: none; font-weight: bold; }
+    .sidebar ul li a:hover { color: #00bfff; }
+    .main-content {
+      flex: 1;
+      padding: 40px;
+      backdrop-filter: blur(6px);
+      background: rgba(0,0,0,0.4);
+      border-radius: 10px;
+    }
+    .section { margin-top: 20px; }
+    #overview canvas {
+      background: rgba(0,0,0,0.5);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    .recent-activity { display: flex; gap: 40px; }
+    .recent-sales, .recent-purchases {
+      flex: 1;
+      background: rgba(0,0,0,0.5);
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .recent-sales h3, .recent-purchases h3 {
+      color: #00bfff;
+      margin-bottom: 10px;
+    }
+    .recent-sales li, .recent-purchases li {
+      margin: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 5px;
+    }
+    #tasks li.completed { text-decoration: line-through; color: #ccc; }
+  </style>
 </head>
 <body class="dashboard-page">
   <!-- Sidebar -->
@@ -31,11 +83,7 @@
     <div id="overview" class="section">
       <h2>Dashboard Overview</h2>
       <p>Business performance at a glance.</p>
-
-      <!-- Column Chart -->
       <canvas id="overviewChart" width="400" height="200"></canvas>
-
-      <!-- Recent Activity -->
       <div class="recent-activity">
         <div class="recent-sales">
           <h3>Last 5–10 Sales</h3>
@@ -48,16 +96,14 @@
       </div>
     </div>
 
-    <!-- Sales & Orders -->
+    <!-- Sales -->
     <div id="sales" class="section" style="display:none;">
       <h2>Sales & Orders</h2>
       <form id="orderForm">
         <label for="product">Product:</label>
         <input type="text" id="product" required>
-
         <label for="quantity">Quantity:</label>
         <input type="number" id="quantity" min="1" required>
-
         <label for="payment">Payment Method:</label>
         <select id="payment" required>
           <option value="">Select</option>
@@ -65,10 +111,8 @@
           <option value="mtn">MTN Mobile Money</option>
           <option value="airtel">Airtel Money</option>
         </select>
-
         <button type="submit">Add Order</button>
       </form>
-
       <div id="salesSummary">
         <h3>Daily Sales Summary</h3>
         <p>Total Orders: <span id="totalOrders">0</span></p>
@@ -76,7 +120,6 @@
         <p>Cash: RWF <span id="cashSales">0</span></p>
         <p>Mobile Money: RWF <span id="mobileSales">0</span></p>
       </div>
-
       <div id="receipt" style="display:none;">
         <h3>Receipt</h3>
         <p id="receiptDetails"></p>
@@ -90,13 +133,10 @@
       <form id="stockForm">
         <label for="item">Item:</label>
         <input type="text" id="item" required>
-
         <label for="stockQty">Quantity:</label>
         <input type="number" id="stockQty" min="1" required>
-
         <button type="submit">Add to Inventory</button>
       </form>
-
       <div id="inventoryList">
         <h3>Current Stock</h3>
         <ul id="stockItems"></ul>
@@ -109,13 +149,10 @@
       <form id="customerForm">
         <label for="custName">Name:</label>
         <input type="text" id="custName" required>
-
         <label for="custPhone">Phone:</label>
         <input type="text" id="custPhone" required>
-
         <button type="submit">Save Customer</button>
       </form>
-
       <div id="customerList">
         <h3>Saved Customers</h3>
         <ul id="customersList"></ul>
@@ -128,13 +165,10 @@
       <form id="taskForm">
         <label for="taskName">Task:</label>
         <input type="text" id="taskName" required>
-
         <label for="taskDue">Due Date:</label>
         <input type="date" id="taskDue" required>
-
         <button type="submit">Add Task</button>
       </form>
-
       <div id="taskList">
         <h3>My Tasks</h3>
         <ul id="tasksList"></ul>
@@ -154,6 +188,23 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  <script>
+    // Sidebar navigation
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(sec => sec.style.display = 'none');
+      document.getElementById(sectionId).style.display = 'block';
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Overview Chart
+      const ctx = document.getElementById('overviewChart');
+      if (ctx) {
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [
+              {
+                label: 'Sales (RWF)',
+                data: [12000, 15000, 18000, 20000
