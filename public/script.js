@@ -18,7 +18,7 @@ if (loginForm) {
       errorMessage.textContent = "Role must be selected.";
     } else if (role === "admin" && username === "admin" && password === "1234") {
       localStorage.setItem("role", "admin");
-      window.location.href = "/dashboard.html";
+      window.location.href = "dashboard.html";
     } else if (role === "employee" && username === "employee" && password === "1234") {
       localStorage.setItem("role", "employee");
       window.location.href = "/dashboard.html";
