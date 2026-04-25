@@ -237,3 +237,79 @@ if (ctx) {
     }
   });
 }
+// Overview Chart (Sales vs Purchases)
+const ctx = document.getElementById('overviewChart');
+if (ctx) {
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], // Example months
+      datasets: [
+        {
+          label: 'Sales (RWF)',
+          data: [12000, 15000, 18000, 20000, 17000, 22000], // Example sales data
+          backgroundColor: 'rgba(0, 191, 255, 0.7)'
+        },
+        {
+          label: 'Purchases (RWF)',
+          data: [8000, 10000, 12000, 14000, 13000, 15000], // Example purchases data
+          backgroundColor: 'rgba(255, 99, 132, 0.7)'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          labels: { color: '#fff' }
+        }
+      },
+      scales: {
+        x: { ticks: { color: '#fff' } },
+        y: { ticks: { color: '#fff' } }
+      }
+    }
+  });
+}
+
+// Recent Sales & Purchases (Example Data)
+const recentSalesData = [
+  "Beer x2 - RWF 2000",
+  "Soda x3 - RWF 1500",
+  "Water x1 - RWF 500",
+  "Juice x2 - RWF 3000",
+  "Wine x1 - RWF 8000"
+];
+
+const recentPurchasesData = [
+  "Beer stock +50 - RWF 50000",
+  "Soda stock +30 - RWF 15000",
+  "Water stock +20 - RWF 10000",
+  "Juice stock +10 - RWF 15000",
+  "Wine stock +5 - RWF 40000"
+];
+
+function renderRecentActivity() {
+  const salesList = document.getElementById("recentSales");
+  const purchasesList = document.getElementById("recentPurchases");
+
+  if (salesList) {
+    salesList.innerHTML = "";
+    recentSalesData.slice(-10).forEach(sale => {
+      const li = document.createElement("li");
+      li.textContent = sale;
+      salesList.appendChild(li);
+    });
+  }
+
+  if (purchasesList) {
+    purchasesList.innerHTML = "";
+    recentPurchasesData.slice(-10).forEach(purchase => {
+      const li = document.createElement("li");
+      li.textContent = purchase;
+      purchasesList.appendChild(li);
+    });
+  }
+}
+
+renderRecentActivity();
