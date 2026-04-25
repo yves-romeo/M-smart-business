@@ -393,32 +393,5 @@ html, body {
   margin-bottom: 20px;
 }
 
-.recent-activity {
-  display: flex;
-  gap: 40px;
-}
-
-.recent-sales, .recent-purchases {
-  flex: 1;
-  background: rgba(0,0,0,0.5);
-  padding: 15px;
-  border-radius: 8px;
-}
-
-.recent-sales h3, .recent-purchases h3 {
-  color: #00bfff;
-  margin-bottom: 10px;
-}
-
-.recent-sales ul, .recent-purchases ul {
-  list-style: none;
-  padding: 0;
-}
-
-.recent-sales li, .recent-purchases li {
-  margin: 5px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  padding-bottom: 5px;
-}
 
 
