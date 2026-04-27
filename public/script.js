@@ -237,3 +237,85 @@ if (ctx) {
     }
   });
 }
+// Recent Transactions (example data)
+const transactions = [
+  { product: "Beer", qty: 2, price: 2000, date: "2026-04-25" },
+  { product: "Soda", qty: 3, price: 1500, date: "2026-04-25" },
+  { product: "Water", qty: 1, price: 500, date: "2026-04-24" },
+  { product: "Juice", qty: 2, price: 3000, date: "2026-04-24" },
+  { product: "Wine", qty: 1, price: 8000, date: "2026-04-23" }
+];
+
+function renderTransactions() {
+  const tbody = document.querySelector("#transactionsTable tbody");
+  tbody.innerHTML = "";
+  transactions.slice(-10).forEach(t => {
+    const row = `<tr><td>${t.product}</td><td>${t.qty}</td><td>RWF ${t.price}</td><td>${t.date}</td></tr>`;
+    tbody.innerHTML += row;
+  });
+}
+renderTransactions();
+
+// Top Selling Products (example data)
+const topProductsData = [
+  { product: "Beer", units: 120, revenue: 120000 },
+  { product: "Soda", units: 90, revenue: 45000 },
+  { product: "Juice", units: 60, revenue: 90000 }
+];
+
+function renderTopProducts() {
+  const list = document.getElementById("topProducts");
+  list.innerHTML = "";
+  topProductsData.forEach(p => {
+    const li = document.createElement("li");
+    li.textContent = `${p.product} — Units: ${p.units}, Revenue: RWF ${p.revenue}`;
+    list.appendChild(li);
+  });
+}
+renderTopProducts();
+
+// Low Stock Alerts (example data)
+const lowStockData = [
+  { product: "Water", qty: 3 },
+  { product: "Wine", qty: 0 }
+];
+
+function renderLowStock() {
+  const list = document.getElementById("lowStock");
+  list.innerHTML = "";
+  lowStockData.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = `${item.product}: ${item.qty <= 0 ? "Out of stock" : "Low stock ("+item.qty+")"}`;
+    list.appendChild(li);
+  });
+}
+renderLowStock();
+
+// Profit Summary (example data)
+const revenue = 120000;
+const cost = 80000;
+const profit = revenue - cost;
+const margin = ((profit / revenue) * 100).toFixed(1);
+
+document.getElementById("revenue").textContent = revenue;
+document.getElementById("cost").textContent = cost;
+document.getElementById("profit").textContent = profit;
+document.getElementById("margin").textContent = margin;
+
+// Notifications (example data)
+const notificationsData = [
+  "Unpaid order: Juice x2",
+  "Pending purchase: Wine stock",
+  "Stock issue: Water low"
+];
+
+function renderNotifications() {
+  const list = document.getElementById("notifications");
+  list.innerHTML = "";
+  notificationsData.forEach(n => {
+    const li = document.createElement("li");
+    li.textContent = n;
+    list.appendChild(li);
+  });
+}
+renderNotifications();
